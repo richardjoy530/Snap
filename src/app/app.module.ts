@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
-import { AppListItemComponent } from './app-list-item/app-list-item.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { CommonModule } from '@angular/common';
     LoginComponent,
     AppListingComponent,
     AppDataComponent,
-    AppListItemComponent
   ],
   imports: [
     BrowserModule,
