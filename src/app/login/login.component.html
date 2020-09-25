@@ -1,0 +1,17 @@
+<div class="background">
+    <div class="main-container">
+        <section class="login-section">
+            <p>Please enter your credentials</p>
+            <form (submit)="authenticate($event)" method="dialog">
+                <input type="text" name="username" id="username" placeholder="Username" required maxlength="10"
+                    minlength="2">
+                <input type="password" name="password" id="password" placeholder="Password" required maxlength="10"
+                    minlength="2">
+                <input class="submit" type="submit" value="Log In">
+            </form>
+        </section>
+        <section class="other-section">
+            <img src="https://angular.io/assets/images/logos/angular/angular.svg" height="300px">
+        </section>
+    </div>
+</div>
