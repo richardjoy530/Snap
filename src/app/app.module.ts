@@ -6,37 +6,46 @@ import {AppDataComponent} from './app-data/app-data.component';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
+import { AuthService } from './auth.service';
+import { AppListItemComponent } from './app-list-item/app-list-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AppListingComponent,
-    AppDataComponent
+    AppDataComponent,
+    AppListItemComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       {
         path: "",
-        component: LoginComponent
+        redirectTo:"login",
+        pathMatch: 'full',
       },
       {
         path: "app-listing",
         component: AppListingComponent,
-        canActivate: [AuthGuard]
+        // canActivate: [AuthGuard],
       },
       {
         path: "app-data",
-        component: AppDataComponent
+        component: AppDataComponent,
+        // canActivate: [AuthGuard],
       },
       {
         path: "login",
-        component: LoginComponent
-      }
+        component: LoginComponent,
+      },{
+        path: "**",
+        redirectTo:"login",
+        pathMatch: 'full',
+      },
     ])
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthGuard,AuthService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-app-listing',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppListingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService, private route: Router) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.auth.isLoggedIn = false;
+    this.route.navigate(["login"])
   }
 
 }

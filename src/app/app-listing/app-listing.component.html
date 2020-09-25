@@ -1,1 +1,43 @@
-<p>app-listing works!</p>
+<nav class="navbar">
+    <p class="title">App List</p>
+    <span class="navbar-right">
+        <ul>
+            <input (onclick)="logout()" type="button" value="New App">
+            <input (click)="logout()" type="button" value="Log Out">
+        </ul>
+    </span>
+</nav>
+
+<div class="add-app-info">
+    <input type="text" name="name" id="name" placeholder="Name">
+    <input type="text" name="description" id="description" placeholder="Description">
+    <span>
+        <button type="button">Cancel</button>
+        <button type="button">Save</button>
+    </span>
+</div>
+
+<div class="app-list" *ngIf="true">
+    <table>
+        <thead>
+            <tr class="heading">
+                <th>Name</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let app of []">
+                <td>{{app}}</td>
+                <td>asdasd</td>
+                <td>
+                    <button type="button">Edit App Info</button>
+                    <button type="button">Edit App Data</button>
+                    <button type="button">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
