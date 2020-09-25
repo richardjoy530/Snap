@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { AppListItemComponent } from './app-list-item/app-list-item.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,12 +29,12 @@ import { AppListItemComponent } from './app-list-item/app-list-item.component';
       {
         path: "app-listing",
         component: AppListingComponent,
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
       },
       {
         path: "app-data",
         component: AppDataComponent,
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
       },
       {
         path: "login",
