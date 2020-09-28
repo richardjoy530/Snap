@@ -9,9 +9,14 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   constructor(private auth: AuthService, private route: Router) {
+    console.log(this.auth.isLoggedIn + "login con")
   }
 
   ngOnInit(): void {
+    if (this.auth.isLoggedIn == true) {
+      console.log(this.auth.isLoggedIn)
+      this.route.navigate(["app-listing"])
+    }
   }
 
   authenticate(event) {

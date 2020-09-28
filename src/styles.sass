@@ -1,28 +1,24 @@
-$primary-button-color: #241349
-$primary-text-color : #c5c5c5
-$background-shade-100: #273f61
-$background-shade-200: #132642
+@import src\colors.sass
+@import url('https://fonts.googleapis.com/css2?family=Roboto')
+
+*
+    font-family: 'Roboto', sans-serif
+    :focus
+        outline: none
+    border-width: 0px
 
 body
-    margin: 0px
-    padding: 0px
     background-image: url("https://d585tldpucybw.cloudfront.net/sfimages/default-source/labs/kendo/2020-revamp/angular-bg.jpg?v=2")
-    height: 100vh
-    width: 100vw
-    position: absolute
-    top: 0
-    bottom: 0
-    left: 0
-    right: 0
+    background-repeat: no-repeat
+    background-attachment: fixed
+    background-size: cover
 
 table
     padding: 20px
     text-align: center
     border-spacing: 15px
     width: 100%
-
     tr
-
         th
             background-color: $background-shade-100
             padding: 10px

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   usersList: Array<User>
-  isLoggedIn = false
+  isLoggedIn: boolean
   currentUser: User
   constructor() {
     this.usersList = [
@@ -16,6 +16,17 @@ export class AuthService {
       new User("richard", "pass123", [permissions.EditAppData, permissions.EditAppInfo]),
       new User("tester", "tester123", [permissions.DeleteApp]),
     ]
+    this.isLoggedIn = false
+    if (localStorage.getItem("user") != "" &&localStorage.getItem("user")!=null) {
+      var temp = JSON.parse(localStorage.getItem("user"))
+      if (temp != null) {
+        this.isLoggedIn = true
+        this.currentUser = temp
+        console.log(this.currentUser)
+      }
+    }
+
+
   }
   get loggedIn() {
     return this.isLoggedIn
@@ -26,6 +37,7 @@ export class AuthService {
       if (user.username.toLowerCase() == username && user.password == password) {
         this.currentUser = user
         this.isLoggedIn = true
+        localStorage.setItem("user", JSON.stringify(user))
         return true
       }
     });

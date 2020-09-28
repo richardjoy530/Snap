@@ -2,9 +2,10 @@
     <p class="title">App List</p>
     <span class="navbar-right">
         <ul>
-            <input *ngIf="(!showUpdateDiv&&!showNewDiv)&&auth.currentUser.permissions.indexOf('Create App Info')>-1"
+            <input class="hvr-grow"
+                *ngIf="(!showUpdateDiv&&!showNewDiv)&&auth.currentUser.permissions.indexOf('Create App Info')>-1"
                 (click)="showNewDiv=true" type="button" value="New App">
-            <input (click)="logout()" type="button" value="Log Out">
+            <input class="hvr-grow" (click)="logout()" type="button" value="Log Out">
         </ul>
     </span>
 </nav>
@@ -14,8 +15,8 @@
         <input class="text" type="text" name="name" id="name-create" placeholder="Name" required>
         <input class="text" type="text" name="description" id="description-create" placeholder="Description" required>
         <span>
-            <input class="submit" type="submit" value="Create">
-            <input (click)="showNewDiv=false" class="submit" type="button" value="Cancel">
+            <input class="submit hvr-grow" type="submit" value="Create">
+            <input class=" submit hvr-grow" (click)="showNewDiv=false" type="button" value="Cancel">
         </span>
     </form>
 </div>
@@ -27,8 +28,8 @@
         <input class="text" type="text" name="description" id="description-update" value={{oldAppInfo.description}}
             required>
         <span>
-            <input class="submit" type="submit" value="Update">
-            <input (click)="showUpdateDiv=false" class="submit" type="button" value="Cancel">
+            <input class="submit hvr-grow" type="submit" value="Update">
+            <input class="submit hvr-grow" (click)="showUpdateDiv=false" type="button" value="Cancel">
         </span>
     </form>
 </div>
@@ -42,21 +43,17 @@
                 <th>Action</th>
             </tr>
         </thead>
-
         <tbody>
             <tr *ngFor="let appinfo of getAppList()">
                 <td>{{appinfo.name}}</td>
                 <td>{{appinfo.description}}</td>
                 <td>
-                    <button *ngIf="auth.currentUser.permissions.indexOf('Edit App Info')>-1"
+                    <button class="hvr-grow" *ngIf="auth.currentUser.permissions.indexOf('Edit App Info')>-1"
                         (click)="saveOldInfo(appinfo)" type="button">Edit App Info</button>
-
-                    <button *ngIf="auth.currentUser.permissions.indexOf('Edit App Data')>-1"
+                    <button class="hvr-grow" *ngIf="auth.currentUser.permissions.indexOf('Edit App Data')>-1"
                         (click)="saveOldData(appinfo)" type="button">Edit App Data</button>
-
-                    <button *ngIf="auth.currentUser.permissions.indexOf('Delete App')>-1" (click)="delete(appinfo)"
-                        type="button">Delete</button>
-
+                    <button class="hvr-grow" *ngIf="auth.currentUser.permissions.indexOf('Delete App')>-1"
+                        (click)="delete(appinfo)" type="button">Delete</button>
                 </td>
             </tr>
         </tbody>

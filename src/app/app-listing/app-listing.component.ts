@@ -36,7 +36,7 @@ export class AppListingComponent implements OnInit {
     this.oldAppInfo = appInfo
   }
   saveOldData(appInfo: AppInfo) {
-    this.oldAppInfo = appInfo
+    this.data.selectedAppInfo = appInfo
     this.route.navigate(["app-data"])
   }
 
@@ -50,6 +50,8 @@ export class AppListingComponent implements OnInit {
   } 
   logout() {
     this.auth.isLoggedIn = false;
+    this.auth.currentUser=null;
+    localStorage.setItem("user","")
     this.route.navigate(["login"])
   }
 
