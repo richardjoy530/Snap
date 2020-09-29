@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit {
   authenticate(event) {
     const username = event.target.querySelector("#username").value
     const password = event.target.querySelector("#password").value
+    console.log(event)
     this.auth.authenticate(username, password)
+    
     if (this.auth.loggedIn == true) {
       this.route.navigate(["app-listing"])
     } else {

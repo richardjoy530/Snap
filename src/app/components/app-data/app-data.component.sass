@@ -1,0 +1,121 @@
+$primary-button-color: #241349
+$primary-text-color : #c5c5c5
+$background-shade-100: #273f61
+$background-shade-200: #132642
+@import url('https://fonts.googleapis.com/css2?family=Roboto')
+
+.navbar
+    background-color: $background-shade-100
+    margin: 20px
+    border-radius: 10px 
+    display: flex
+    align-items: baseline
+    justify-content: space-around
+
+    .title
+        font-size: 2rem
+        color: $primary-text-color
+        font-weight: 400
+        margin: 10px
+
+    input
+        margin: 10px
+        padding: 10px
+        background-color: $primary-button-color
+        color: $primary-text-color
+        border-radius: 10px
+        font-weight: 500
+        cursor: pointer
+
+.main-container
+    margin: 20px
+    display: flex
+    justify-content: space-evenly
+    color: $primary-text-color
+    ::placeholder
+        color: #777777
+
+    .heading
+        background-color: $background-shade-100
+        padding: 10px
+        border-radius: 10px
+        width: min-content
+        margin-top: 0px
+
+    section
+        text-align: center
+
+    .control
+        flex: 1
+        border-radius: 10px
+        background-color: #273f6163
+        display: flex
+        flex-direction: column
+        align-items: center
+        height: max-content
+        padding: 20px
+       
+        button
+            margin: 10px
+            padding: 10px
+            background-color: $primary-button-color
+            color: $primary-text-color
+            border-radius: 10px
+            font-weight: 500
+            cursor: pointer
+            
+    .data
+        flex: 1
+        border-radius: 10px
+        background-color: #273f6163
+        padding: 20px
+        margin-left: 20px
+        margin-right: 20px
+        height: max-content
+        align-items: start
+
+        .heading
+            display: inline-block
+
+        .data-div
+            display: flex
+            align-items: flex-start
+            flex-direction: column
+
+        button
+            margin-top: 10px
+            margin-bottom: 10px
+            padding: 10px
+            background-color: $primary-button-color
+            color: $primary-text-color
+            border-radius: 10px
+            font-weight: 500
+            cursor: pointer
+        input 
+            padding: 10px
+            margin-top: 10px
+            margin-bottom: 10px
+            height: 30px
+            border-radius: 10px
+            background-color: #0a163c
+            color: $primary-text-color
+
+    .prop
+        flex: 1
+        border-radius: 10px
+        background-color: #273f6163
+        padding: 20px
+        height: max-content
+        align-items: start
+        
+        .heading
+            display: inline-block
+
+
+.hvr    
+    transition-duration: 0.3s
+    transition-property: transform
+.hvr:hover
+    transform: scale(1.2)
+
+

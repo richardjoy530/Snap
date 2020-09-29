@@ -1,0 +1,7 @@
+<div>
+    <label for="id">Id: </label>
+    <input type="text" name="id" [value]=control.id (input)="control.id=$event.target.value">
+    <label for="lable">Lablel: </label>
+    <input type="text" name="label" [value]=control.lableText (input)="control.lableText=$event.target.value">
+    <button class="hvr " (click)="detele()">Delete</button>
+</div>

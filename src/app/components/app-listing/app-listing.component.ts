@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { AppInfo, DataService } from '../data.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { AppData, AppInfo, DataService } from 'src/app/services/data/data.service';
+
 @Component({
   selector: 'app-app-listing',
   templateUrl: './app-listing.component.html',
   styleUrls: ['./app-listing.component.sass']
 })
 export class AppListingComponent implements OnInit {
+
   showNewDiv = false
   showUpdateDiv = false
   oldAppInfo: AppInfo
+
   constructor(public auth: AuthService, private route: Router, private data: DataService) { }
 
   ngOnInit(): void {
@@ -24,7 +27,7 @@ export class AppListingComponent implements OnInit {
     console.log(event)
     const name = event.target[0].value
     const description = event.target[1].value
-    this.data.addAppInfo(new AppInfo(name, description))
+    this.data.addAppInfo(new AppInfo(name, description, new AppData([])))
     this.showUpdateDiv = false
     this.showNewDiv = false
   }
@@ -32,7 +35,7 @@ export class AppListingComponent implements OnInit {
     this.data.deleteApp(appInfo)
   }
   saveOldInfo(appInfo: AppInfo) {
-    this.showUpdateDiv = true 
+    this.showUpdateDiv = true
     this.oldAppInfo = appInfo
   }
   saveOldData(appInfo: AppInfo) {
@@ -44,14 +47,15 @@ export class AppListingComponent implements OnInit {
     console.log(event)
     this.oldAppInfo.name = event.target[0].value
     this.oldAppInfo.description = event.target[1].value
-    this.data.editAppInfo(this.oldAppInfo)
+    this.data.editApp(this.oldAppInfo)
     this.showNewDiv = false
     this.showUpdateDiv = false
-  } 
+    this.oldAppInfo=null
+  }
   logout() {
     this.auth.isLoggedIn = false;
-    this.auth.currentUser=null;
-    localStorage.setItem("user","")
+    this.auth.currentUser = null;
+    localStorage.setItem("user", "")
     this.route.navigate(["login"])
   }
 

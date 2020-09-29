@@ -4,34 +4,33 @@ $background-shade-100: #273f61
 $background-shade-200: #132642
 @import url('https://fonts.googleapis.com/css2?family=Roboto')
 
-.navbar
-    background-color: $background-shade-100
-    margin: 20px
-    border-radius: 10px 
+div
     display: flex
-    align-items: baseline
-    justify-content: space-around
+    align-items: flex-start
+    flex-direction: column
+    ::placeholder
+        color:#777777
 
-    .title
-        font-size: 2rem
-        color: $primary-text-color
-        font-weight: 400
-        margin: 10px
-
-    input
-        margin: 10px
+    button
+        margin-top: 10px
+        margin-bottom: 10px
         padding: 10px
         background-color: $primary-button-color
         color: $primary-text-color
         border-radius: 10px
         font-weight: 500
         cursor: pointer
-
-
-.hvr-grow    
+    input 
+        padding: 10px
+        margin-top: 10px
+        margin-bottom: 10px
+        height: 30px
+        border-radius: 10px
+        background-color: #0a163c
+        color: $primary-text-color
+.hvr    
     transition-duration: 0.3s
     transition-property: transform
-.hvr-grow:hover, .hvr-grow:active, .hvr-grow:focus
-    transform: scale(1.1)
-
+.hvr:hover
+    transform: scale(1.2)
 

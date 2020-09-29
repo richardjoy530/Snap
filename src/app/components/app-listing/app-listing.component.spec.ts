@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AppListingComponent } from './app-listing.component';
 
 describe('AppListingComponent', () => {

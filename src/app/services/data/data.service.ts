@@ -4,16 +4,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
+
   selectedAppInfo: AppInfo
   appsInfo: Array<AppInfo>
+
   constructor() {
-    // TODO: remove the next line
-    this.selectedAppInfo = new AppInfo("Test Data", "Dummy Description")
     this.appsInfo = JSON.parse(localStorage.getItem("appsInfoList"))
     if (this.appsInfo == null) {
       this.appsInfo = []
     }
-
   }
 
   addAppInfo(appInfo: AppInfo) {
@@ -34,28 +33,12 @@ export class DataService {
       return false
   }
 
-  editAppInfo(appInfo: AppInfo) {
+  editApp(appInfo: AppInfo) {
     this.appsInfo.forEach(oldAppInfo => {
       if (oldAppInfo.id == appInfo.id) {
         const index = this.appsInfo.indexOf(oldAppInfo)
         if (index > -1) {
-          this.appsInfo.splice(index, 1)
-          this.appsInfo.push(appInfo)
-          localStorage.setItem("appsInfoList", JSON.stringify(this.appsInfo));
-          return true
-        }
-        else return false
-      }
-    });
-  }
-
-  editAppData(appInfo: AppInfo) {
-    this.appsInfo.forEach(oldAppInfo => {
-      if (oldAppInfo.id == appInfo.id) {
-        const index = this.appsInfo.indexOf(oldAppInfo)
-        if (index > -1) {
-          this.appsInfo.splice(index, 1)
-          this.appsInfo.push(appInfo)
+          this.appsInfo.splice(index, 1, appInfo)
           localStorage.setItem("appsInfoList", JSON.stringify(this.appsInfo));
           return true
         }
@@ -65,29 +48,42 @@ export class DataService {
   }
 }
 
-
 export class AppInfo {
   id: number
-  appData: AppData
-  constructor(public name: string, public description: string) {
+  constructor(public name: string, public description: string, public appData: AppData) {
   }
 }
 
 export class AppData {
-  controls: []
+  constructor(public controls: any[]) {
+  }
 }
 
-
 export class Button {
-  public id: string
-  public ButtonText: string
+  constructor(public id: string, public buttonText: string) {
+  }
+}
 
-} export class Label {
-  public id: string
-  public LableText: string
+export class Label {
+  constructor(public id: string, public lableText: string) {
+  }
+}
 
-} export class TextBox {
-  public id: string
-  public value: string
+export class TextBox {
+  constructor(public id: string, public name: string, public value: string, public textPlaceholder: string) {
+  }
+}
 
+export class InputGeneral {
+  constructor(public id: string, public name: string, public type: InputTypes,
+    public value: string, public placeholder: string, public checked: string) {
+  }
+}
+
+enum InputTypes {
+  Radio = "radio",
+  Text = "text",
+  Checkbox = "checkbox",
+  File = "file",
+  DateTime = "dateTime"
 }
