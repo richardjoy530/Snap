@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +9,14 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  constructor(private auth: AuthService, private route: Router) {
-    console.log(this.auth.isLoggedIn + "login con")
+
+  loginForm: FormGroup; 
+
+  constructor(private auth: AuthService, private route: Router,public form:FormBuilder) {
+    this.loginForm = this.form.group({
+      username: '',
+      password: '',
+    })
   }
 
   ngOnInit(): void {
@@ -19,11 +26,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  authenticate(event) {
-    const username = event.target.querySelector("#username").value
-    const password = event.target.querySelector("#password").value
-    console.log(event)
-    this.auth.authenticate(username, password)
+  authenticate() {
+    this.auth.authenticate(this.loginForm.value.username, this.loginForm.value.password)
     
     if (this.auth.loggedIn == true) {
       this.route.navigate(["app-listing"])

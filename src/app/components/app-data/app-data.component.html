@@ -11,36 +11,40 @@
 
 
 <div class="main-container">
+
+
     <section class="control">
         <p class="heading">Controls</p>
         <button class="hvr " (click)="addLabel()">Label</button>
         <button class="hvr " (click)="addTextBox()">TextBox</button>
+        <button mat-raised-button color="primary">Primary</button>
         <button class="hvr " (click)="addButton()">Button</button>
     </section>
-    <section class="data">
-        <p class="heading">Data</p>
-        <div class="data-div" *ngFor="let control of getUnsavedControls()">
 
-            <label [id]=control.id *ngIf="control.lableText" for={{control.lableText}}
+
+    <section cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" class="data">
+        <p class="heading">Data</p>
+        <div  class="data-div" *ngFor="let control of getUnsavedControls()">
+
+            <label cdkDrag class="example-box label" [id]=control.id *ngIf="control.lableText" for={{control.lableText}}
                 (click)="onClickControl(control)"> {{control.lableText+":"}}</label>
 
-            <input [id]=control.id *ngIf="control.textPlaceholder" type="text" name={{control.name}}
+            <input cdkDrag class="example-box input" [id]=control.id *ngIf="control.textPlaceholder" type="text" name={{control.name}}
                 (click)="onClickControl(control)" [value]=control.value
                 (input)="currentControl.value=$event.target.value" placeholder={{control.textPlaceholder}}>
-
-            <button [id]=control.id *ngIf="control.buttonText" class="hvr"
+            <button cdkDrag class="example-box button" [id]=control.id *ngIf="control.buttonText" class="hvr"
                 (click)="onClickControl(control)">{{control.buttonText}}</button>
 
         </div>
     </section>
+
+    
     <section class="prop">
         <p class="heading">Control Properties</p>
-
-
-        <app-label [control]="currentControl" [unSavedControls]="unSavedControls" *ngIf="selectedControl=='label'"></app-label>
-        <app-text-box [control]="currentControl" [unSavedControls]="unSavedControls" *ngIf="selectedControl=='textBox'"></app-text-box>
-        <app-button [control]="currentControl" [unSavedControls]="unSavedControls" *ngIf="selectedControl=='button'"></app-button>
-        <app-input [control]="currentControl" [unSavedControls]="unSavedControls" *ngIf="selectedControl=='input'"></app-input>
+        <app-label [control]="currentControl" [unSavedControls]="unSavedControls" *ngIf="data.selectedControl=='label'"></app-label>
+        <app-text-box [control]="currentControl" [unSavedControls]="unSavedControls" *ngIf="data.selectedControl=='textBox'"></app-text-box>
+        <app-button [control]="currentControl" [unSavedControls]="unSavedControls" *ngIf="data.selectedControl=='button'"></app-button>
+        <app-input [control]="currentControl" [unSavedControls]="unSavedControls" *ngIf="data.selectedControl=='input'"></app-input>
 
     </section>
 </div>

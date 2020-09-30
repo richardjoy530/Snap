@@ -1,7 +1,8 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { Button, DataService, Label, TextBox } from '../services/data.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Button, DataService, Label, TextBox } from 'src/app/services/data/data.service';
 
 @Component({
   selector: 'app-data',
@@ -10,10 +11,10 @@ import { Button, DataService, Label, TextBox } from '../services/data.service';
 })
 export class AppDataComponent implements OnInit {
   unSavedControls: any[];
-  selectedControl: string
   currentControl: any
   constructor(public data: DataService, public auth: AuthService, public route: Router) {
     this.unSavedControls = [...data.selectedAppInfo.appData.controls]
+    data.selectedControl=''
   }
 
   ngOnInit(): void {
@@ -23,9 +24,13 @@ export class AppDataComponent implements OnInit {
     return this.unSavedControls
   }
 
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.unSavedControls, event.previousIndex, event.currentIndex);
+  }
+
   addLabel() {
     var tempControl = new Label(Date.now().toString(), "Name")
-    this.selectedControl = "label"
+    this.data.selectedControl = "label"
     this.unSavedControls.push(tempControl)
     this.unSavedControls.forEach(element => {
       if (element.id == tempControl.id) {
@@ -36,7 +41,7 @@ export class AppDataComponent implements OnInit {
 
   addTextBox() {
     var tempControl = new TextBox(Date.now().toString(), "Name", "", "Name")
-    this.selectedControl = "textBox"
+    this.data.selectedControl = "textBox"
     this.unSavedControls.push(tempControl)
     this.unSavedControls.forEach(element => {
       if (element.id == tempControl.id) {
@@ -47,7 +52,7 @@ export class AppDataComponent implements OnInit {
 
   addButton() {
     var tempControl = new Button(Date.now().toString(), "Submit")
-    this.selectedControl = "button"
+    this.data.selectedControl = "button"
     this.unSavedControls.push(tempControl)
     this.unSavedControls.forEach(element => {
       if (element.id == tempControl.id) {
@@ -57,6 +62,7 @@ export class AppDataComponent implements OnInit {
   }
 
   save() {
+    this.data.selectedAppInfo.appData.controls=[]
     this.unSavedControls.forEach(element => {
       this.data.selectedAppInfo.appData.controls.push(element)
     });
@@ -67,11 +73,11 @@ export class AppDataComponent implements OnInit {
 
   onClickControl(control) {
     if (control.lableText) {
-      this.selectedControl = "label"
+      this.data.selectedControl = "label"
     } else if (control.textPlaceholder) {
-      this.selectedControl = "textBox"
+      this.data.selectedControl = "textBox"
     } else if (control.buttonText) {
-      this.selectedControl = "button"
+      this.data.selectedControl = "button"
     }
     this.currentControl = control
   }

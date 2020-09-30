@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TextBox } from 'src/app/services/data.service';
+import { DataService, TextBox } from 'src/app/services/data/data.service';
 
 @Component({
   selector: 'app-text-box',
@@ -8,7 +8,7 @@ import { TextBox } from 'src/app/services/data.service';
 })
 export class TextBoxComponent implements OnInit {
 
-  constructor() { }
+  constructor(public data:DataService) { }
 
   @Input() control: TextBox
   @Input() unSavedControls: any[]
@@ -16,7 +16,7 @@ export class TextBoxComponent implements OnInit {
   }
 
   detele() {
-    this.unSavedControls
+    this.data.selectedControl=''
     const index = this.unSavedControls.indexOf(this.control)
     if (index > -1) {
       this.unSavedControls.splice(index, 1)

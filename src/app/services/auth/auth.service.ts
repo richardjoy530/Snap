@@ -28,8 +28,6 @@ export class AuthService {
         console.log(this.currentUser)
       }
     }
-
-
   }
   get loggedIn() {
     return this.isLoggedIn

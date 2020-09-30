@@ -118,4 +118,35 @@ $background-shade-200: #132642
 .hvr:hover
     transform: scale(1.2)
 
+.label
+    color: $primary-text-color
+    
+.button
+    margin-top: 10px
+    margin-bottom: 10px
+    padding: 10px
+    background-color: $primary-button-color
+    color: $primary-text-color
+    border-radius: 10px
+    font-weight: 500
+    cursor: pointer
+.input 
+    padding: 10px
+    margin-top: 10px
+    margin-bottom: 10px
+    height: 30px
+    border-radius: 10px
+    background-color: #0a163c
+    color: $primary-text-color
 
+
+.cdk-drag-placeholder 
+    opacity: 0
+
+
+.cdk-drag-animating 
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1)
+
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) 
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1)

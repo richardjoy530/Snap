@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { InputGeneral } from '../../services/data.service';
+import { DataService, InputGeneral } from 'src/app/services/data/data.service';
 
 @Component({
   selector: 'app-input',
@@ -8,13 +8,13 @@ import { InputGeneral } from '../../services/data.service';
 })
 export class InputComponent implements OnInit {
 
-  constructor() { }
-  @Input() control:InputGeneral
+  constructor(public data: DataService) { }
+  @Input() control: InputGeneral
   @Input() unSavedControls: any[]
   ngOnInit(): void {
   }
   detele() {
-    this.unSavedControls
+    this.data.selectedControl = ''
     const index = this.unSavedControls.indexOf(this.control)
     if (index > -1) {
       this.unSavedControls.splice(index, 1)

@@ -1,4 +1,6 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { AppData, AppInfo, DataService } from 'src/app/services/data/data.service';
@@ -14,20 +16,33 @@ export class AppListingComponent implements OnInit {
   showUpdateDiv = false
   oldAppInfo: AppInfo
 
-  constructor(public auth: AuthService, private route: Router, private data: DataService) { }
+  newAppForm: FormGroup;
+  updateAppForm: FormGroup;
+
+  constructor(public auth: AuthService, private route: Router, private data: DataService, private form: FormBuilder) { }
 
   ngOnInit(): void {
+    this.newAppForm = this.form.group({
+      name: '',
+      description: '',
+    })
+    this.updateAppForm = this.form.group({
+      name: '',
+      description: '',
+    })
     this.showUpdateDiv = false
     this.showNewDiv = false
   }
   getAppList() {
+    console.log()
     return this.data.appsInfo
   }
-  addApp(event) {
-    console.log(event)
-    const name = event.target[0].value
-    const description = event.target[1].value
-    this.data.addAppInfo(new AppInfo(name, description, new AppData([])))
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.data.appsInfo, event.previousIndex, event.currentIndex);
+    localStorage.setItem("appsInfoList", JSON.stringify(this.data.appsInfo));
+  }
+  addApp() {
+    this.data.addAppInfo(new AppInfo(this.newAppForm.value.name, this.newAppForm.value.description, new AppData([])))
     this.showUpdateDiv = false
     this.showNewDiv = false
   }
@@ -37,21 +52,25 @@ export class AppListingComponent implements OnInit {
   saveOldInfo(appInfo: AppInfo) {
     this.showUpdateDiv = true
     this.oldAppInfo = appInfo
+    this.updateAppForm = this.form.group({
+      name: appInfo.name,
+      description: appInfo.description,
+    })
   }
   saveOldData(appInfo: AppInfo) {
     this.data.selectedAppInfo = appInfo
     this.route.navigate(["app-data"])
   }
 
-  updateAppInfo(event) {
-    console.log(event)
-    this.oldAppInfo.name = event.target[0].value
-    this.oldAppInfo.description = event.target[1].value
+  updateAppInfo() {
+    this.oldAppInfo.name = this.updateAppForm.value.name
+    this.oldAppInfo.description = this.updateAppForm.value.description
     this.data.editApp(this.oldAppInfo)
     this.showNewDiv = false
     this.showUpdateDiv = false
-    this.oldAppInfo=null
+    this.oldAppInfo = null
   }
+
   logout() {
     this.auth.isLoggedIn = false;
     this.auth.currentUser = null;

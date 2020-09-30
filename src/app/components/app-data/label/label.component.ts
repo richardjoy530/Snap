@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Label } from 'src/app/services/data.service';
+import { DataService, Label } from 'src/app/services/data/data.service';
 
 @Component({
   selector: 'app-label',
@@ -8,7 +8,7 @@ import { Label } from 'src/app/services/data.service';
 })
 export class LabelComponent implements OnInit {
 
-  constructor() { }
+  constructor(public data:DataService) { }
 
   @Input() control: Label
   @Input() unSavedControls: any[]
@@ -16,7 +16,7 @@ export class LabelComponent implements OnInit {
   }
 
   detele() {
-    this.unSavedControls
+    this.data.selectedControl=''
     const index = this.unSavedControls.indexOf(this.control)
     if (index > -1) {
       this.unSavedControls.splice(index, 1)

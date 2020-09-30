@@ -11,9 +11,9 @@
 </nav>
 
 <div class="add-app-info" *ngIf="showNewDiv">
-    <form method="dialog" (submit)="addApp($event)">
-        <input class="text" type="text" name="name" id="name-create" placeholder="Name" required>
-        <input class="text" type="text" name="description" id="description-create" placeholder="Description" required>
+    <form [formGroup]="newAppForm" (ngSubmit)="addApp()">
+        <input formControlName="name" class="text" type="text" name="name" id="name-create" placeholder="Name" required>
+        <input formControlName="description" class="text" type="text" name="description" id="description-create" placeholder="Description" required>
         <span>
             <input class="submit hvr" type="submit" value="Create">
             <input class=" submit hvr" (click)="showNewDiv=false" type="button" value="Cancel">
@@ -23,9 +23,9 @@
 
 <div class="update-app-info" *ngIf="showUpdateDiv">
     <p>Update App Info</p>
-    <form method="dialog" (submit)="updateAppInfo($event)">
-        <input class="text" type="text" name="name" id="name-update" value={{oldAppInfo.name}} required>
-        <input class="text" type="text" name="description" id="description-update" value={{oldAppInfo.description}}
+    <form [formGroup]="updateAppForm" (ngSubmit)="updateAppInfo()">
+        <input formControlName="name" class="text" type="text" name="name" id="name-update" required>
+        <input formControlName="description" class="text" type="text" name="description" id="description-update"
             required>
         <span>
             <input class="submit hvr" type="submit" value="Update">
@@ -43,8 +43,8 @@
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let appinfo of getAppList()">
+        <tbody cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <tr cdkDrag class="example-box" *ngFor="let appinfo of getAppList()">
                 <td>{{appinfo.name}}</td>
                 <td>{{appinfo.description}}</td>
                 <td>

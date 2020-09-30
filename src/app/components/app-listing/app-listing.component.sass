@@ -69,6 +69,8 @@ $background-shade-200: #132642
     border-radius: 20px
     background-color: rgba(39, 63, 97,0.4)
     color: $primary-text-color
+    tbody
+        cursor: move
 
 button
     margin: 10px
@@ -86,3 +88,16 @@ button
     transform: scale(1.2)
 
 
+.cdk-drag-preview 
+    color: $primary-text-color
+
+
+.cdk-drag-placeholder 
+    opacity: 0
+
+.cdk-drag-animating 
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1)
+
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) 
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1)

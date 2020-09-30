@@ -7,9 +7,11 @@ export class DataService {
 
   selectedAppInfo: AppInfo
   appsInfo: Array<AppInfo>
+  selectedControl: string
 
   constructor() {
     this.appsInfo = JSON.parse(localStorage.getItem("appsInfoList"))
+    this.selectedAppInfo=null
     if (this.appsInfo == null) {
       this.appsInfo = []
     }
