@@ -17,7 +17,35 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditCreateInfoComponent } from './components/app-listing/edit-create-info/edit-create-info.component';
 import { AppDataGuard } from './guards/data/app-data.guard';
+import { DataService } from './services/data/data.service';
 
+
+const route = [{
+  path: "",
+  redirectTo: "login",
+  pathMatch: 'full',
+},
+{
+  path: "app-listing",
+  component: AppListingComponent,
+  canActivate: [AuthGuard],
+  data: { animation: "app-listing" }
+},
+{
+  path: "app-data",
+  component: AppDataComponent,
+  canActivate: [AuthGuard, AppDataGuard],
+  data: { animation: "app-data" }
+},
+{
+  path: "login",
+  component: LoginComponent,
+  data: { animation: "login" }
+}, {
+  path: "**",
+  redirectTo: "login",
+  pathMatch: 'full',
+}]
 
 @NgModule({
   declarations: [
@@ -37,36 +65,10 @@ import { AppDataGuard } from './guards/data/app-data.guard';
     CommonModule,
     DragDropModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot([
-      {
-        path: "",
-        redirectTo: "login",
-        pathMatch: 'full',
-      },
-      {
-        path: "app-listing",
-        component: AppListingComponent,
-        canActivate: [AuthGuard],
-        // data: { animation: "app-listing" }
-      },
-      {
-        path: "app-data",
-        component: AppDataComponent,
-        canActivate: [AuthGuard, AppDataGuard],
-        // data: { animation: "app-data" }
-      },
-      {
-        path: "login",
-        component: LoginComponent,
-        // data: { animation: "login" }
-      }, {
-        path: "**",
-        redirectTo: "login",
-        pathMatch: 'full',
-      },
-    ])
+    RouterModule.forRoot(route)
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AppDataGuard, AuthService, DataService,],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
+

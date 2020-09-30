@@ -1,4 +1,4 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -11,10 +11,15 @@ import { Button, DataService, Label, TextBox } from 'src/app/services/data/data.
 })
 export class AppDataComponent implements OnInit {
   unSavedControls: any[];
+  defaultControls: any[]
   currentControl: any
   constructor(public data: DataService, public auth: AuthService, public route: Router) {
     this.unSavedControls = [...data.selectedAppInfo.appData.controls]
-    data.selectedControl=''
+    data.selectedControl = ''
+    this.defaultControls = [
+      new Label(Date.now().toString(), "Name"),
+      new TextBox(Date.now().toString(), "Name", "", "Name"),
+      new Button(Date.now().toString(), "Submit")]
   }
 
   ngOnInit(): void {
@@ -25,7 +30,15 @@ export class AppDataComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.unSavedControls, event.previousIndex, event.currentIndex);
+    console.log(event)
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
   }
 
   addLabel() {
@@ -62,7 +75,7 @@ export class AppDataComponent implements OnInit {
   }
 
   save() {
-    this.data.selectedAppInfo.appData.controls=[]
+    this.data.selectedAppInfo.appData.controls = []
     this.unSavedControls.forEach(element => {
       this.data.selectedAppInfo.appData.controls.push(element)
     });

@@ -10,8 +10,8 @@
     </span>
 </nav>
 
-<div class="add-app-info" *ngIf="showNewDiv">
-    <form [formGroup]="newAppForm" (ngSubmit)="addApp()">
+<div @sweep class="add-app-info" *ngIf="showNewDiv">
+    <form  [formGroup]="newAppForm" (ngSubmit)="addApp()">
         <input formControlName="name" class="text" type="text" name="name" id="name-create" placeholder="Name" required>
         <input formControlName="description" class="text" type="text" name="description" id="description-create" placeholder="Description" required>
         <span>
@@ -21,9 +21,9 @@
     </form>
 </div>
 
-<div class="update-app-info" *ngIf="showUpdateDiv">
+<div @sweep class="update-app-info" *ngIf="showUpdateDiv">
     <p>Update App Info</p>
-    <form [formGroup]="updateAppForm" (ngSubmit)="updateAppInfo()">
+    <form  [formGroup]="updateAppForm" (ngSubmit)="updateAppInfo()">
         <input formControlName="name" class="text" type="text" name="name" id="name-update" required>
         <input formControlName="description" class="text" type="text" name="description" id="description-update"
             required>

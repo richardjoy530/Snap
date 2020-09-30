@@ -1,4 +1,3 @@
-@import src\colors.sass
 @import url('https://fonts.googleapis.com/css2?family=Roboto')
 
 *
@@ -7,6 +6,8 @@
     list-style: none
     :focus
         outline: none
+    ::-webkit-scrollbar
+        width: 0px
 main
     position: relative
 
@@ -23,6 +24,6 @@ table
     width: 100%
     tr
         th
-            background-color: $background-shade-100
+            background-color: #273f61
             padding: 10px
             border-radius: 10px
