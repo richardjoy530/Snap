@@ -1,9 +1,8 @@
-import { trigger, transition, style, query, group, animateChild, animate, } from '@angular/animations'
+import { trigger, transition, style, query, group, animate, } from '@angular/animations'
 
 export const slideInAnimation =
     trigger('routeAnimations', [
-        transition('app-listing <=> app-data', [
-            style({ position: 'relative' }),
+        transition('app-data => app-listing', [
             query(':enter, :leave', [
                 style({
                     position: 'absolute',
@@ -15,19 +14,38 @@ export const slideInAnimation =
             query(':enter', [
                 style({ left: '-100%' })
             ]),
-            query(':leave', animateChild()),
             group([
                 query(':leave', [
                     animate('300ms ease-out', style({ left: '100%' }))
-                ]),
+                ],{ optional: true }),
                 query(':enter', [
                     animate('300ms ease-out', style({ left: '0%' }))
                 ])
             ]),
-            query(':enter', animateChild()),
         ]),
-        transition('* <=> login', [
-            style({ position: 'relative' }),
+
+        transition('app-listing => app-data', [
+            query(':enter, :leave', [
+                style({
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    width: '100%'
+                })
+            ]),
+            query(':enter', [
+                style({ right: '-100%' })
+            ]),
+            group([
+                query(':leave', [
+                    animate('300ms ease-out', style({ right: '100%' }))
+                ],{ optional: true }),
+                query(':enter', [
+                    animate('300ms ease-out', style({ right: '0%' }))
+                ])
+            ]),
+        ]),
+        transition('* => login', [
             query(':enter, :leave', [
                 style({
                     position: 'absolute',
@@ -39,15 +57,34 @@ export const slideInAnimation =
             query(':enter', [
                 style({ left: '-100%' })
             ]),
-            query(':leave', animateChild()),
             group([
                 query(':leave', [
-                    animate('200ms ease-out', style({ left: '100%' }))
-                ]),
+                    animate('300ms ease-out', style({ left: '100%' }))
+                ],{ optional: true }),
                 query(':enter', [
                     animate('300ms ease-out', style({ left: '0%' }))
                 ])
             ]),
-            query(':enter', animateChild()),
-        ])
+        ]),
+        transition('login => *', [
+            query(':enter, :leave', [
+                style({
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    width: '100%'
+                })
+            ]),
+            query(':enter', [
+                style({ right: '-100%' })
+            ]),
+            group([
+                query(':leave', [
+                    animate('300ms ease-out', style({ right: '100%' }))
+                ],{ optional: true }),
+                query(':enter', [
+                    animate('300ms ease-out', style({ right: '0%' }))
+                ])
+            ]),
+        ]),
     ]);

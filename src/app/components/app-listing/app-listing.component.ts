@@ -18,13 +18,13 @@ import { AppData, AppInfo, DataService } from 'src/app/services/data/data.servic
       transition('* => void', [
         animate('200ms ease-in')]),
     ])],
-    
 })
 export class AppListingComponent implements OnInit {
 
   showNewDiv = false
   showUpdateDiv = false
   oldAppInfo: AppInfo
+
   newAppForm: FormGroup;
   updateAppForm: FormGroup;
 
@@ -45,16 +45,13 @@ export class AppListingComponent implements OnInit {
 
 
   getAppList() {
-    console.log()
     return this.data.appsInfo
   }
-
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.data.appsInfo, event.previousIndex, event.currentIndex);
     localStorage.setItem("appsInfoList", JSON.stringify(this.data.appsInfo));
   }
-
 
   addApp() {
     this.data.addAppInfo(new AppInfo(this.newAppForm.value.name, this.newAppForm.value.description, new AppData([])))
@@ -62,11 +59,9 @@ export class AppListingComponent implements OnInit {
     this.showNewDiv = false
   }
 
-
   delete(appInfo: AppInfo) {
     this.data.deleteApp(appInfo)
   }
-
 
   saveOldInfo(appInfo: AppInfo) {
     this.showUpdateDiv = true
@@ -77,12 +72,10 @@ export class AppListingComponent implements OnInit {
     })
   }
 
-
   saveOldData(appInfo: AppInfo) {
     this.data.selectedAppInfo = appInfo
     this.route.navigate(["app-data"])
   }
-
 
   updateAppInfo() {
     this.oldAppInfo.name = this.updateAppForm.value.name
@@ -93,12 +86,10 @@ export class AppListingComponent implements OnInit {
     this.oldAppInfo = null
   }
 
-
   logout() {
     this.auth.isLoggedIn = false;
     this.auth.currentUser = null;
-    localStorage.setItem("user", "")
+    localStorage.removeItem("user")
     this.route.navigate(["login"])
   }
-
 }

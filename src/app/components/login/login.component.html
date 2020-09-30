@@ -1,15 +1,15 @@
-    <div class="main-container">
-        <section class="login-section hvr">
-            <p>Please enter your credentials</p>
-            <form [formGroup]="loginForm" (ngSubmit)='authenticate()'>
-                <input formControlName="username" class="hvr" type="text" name="username" id="username" placeholder="Username" required maxlength="10"
-                    minlength="2">
-                <input formControlName="password" class="hvr" type="password" name="password" id="password" placeholder="Password" required maxlength="10"
-                    minlength="2">
-                <input class="submit hvr" type="submit" value="Log In" >
-            </form>
-        </section>
-        <section class="other-section">
-            <img class="hvr" src="https://angular.io/assets/images/logos/angular/angular.svg" height="300px">
-        </section>
-    </div>
+<div class="main-container">
+    <section class="login-section hvr">
+        <p>Please enter your credentials</p>
+        <form [formGroup]="loginForm" (ngSubmit)='authenticate()'>
+            <input formControlName="username" class="hvr" type="text" name="username" id="username"
+                placeholder="Username" required maxlength="10" minlength="2">
+            <input formControlName="password" class="hvr" type="password" name="password" id="password"
+                placeholder="Password" required maxlength="10" minlength="2">
+            <input class="submit hvr" type="submit" value="Log In">
+        </form>
+    </section>
+    <section class="other-section">
+        <img class="hvr" src="https://angular.io/assets/images/logos/angular/angular.svg" height="300px">
+    </section>
+</div>

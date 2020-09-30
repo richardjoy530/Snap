@@ -11,9 +11,10 @@
 </nav>
 
 <div @sweep class="add-app-info" *ngIf="showNewDiv">
-    <form  [formGroup]="newAppForm" (ngSubmit)="addApp()">
+    <form [formGroup]="newAppForm" (ngSubmit)="addApp()">
         <input formControlName="name" class="text" type="text" name="name" id="name-create" placeholder="Name" required>
-        <input formControlName="description" class="text" type="text" name="description" id="description-create" placeholder="Description" required>
+        <input formControlName="description" class="text" type="text" name="description" id="description-create"
+            placeholder="Description" required>
         <span>
             <input class="submit hvr" type="submit" value="Create">
             <input class=" submit hvr" (click)="showNewDiv=false" type="button" value="Cancel">
@@ -23,7 +24,7 @@
 
 <div @sweep class="update-app-info" *ngIf="showUpdateDiv">
     <p>Update App Info</p>
-    <form  [formGroup]="updateAppForm" (ngSubmit)="updateAppInfo()">
+    <form [formGroup]="updateAppForm" (ngSubmit)="updateAppInfo()">
         <input formControlName="name" class="text" type="text" name="name" id="name-update" required>
         <input formControlName="description" class="text" type="text" name="description" id="description-update"
             required>
@@ -48,11 +49,11 @@
                 <td>{{appinfo.name}}</td>
                 <td>{{appinfo.description}}</td>
                 <td>
-                    <button class="hvr" *ngIf="auth.currentUser.permissions.indexOf('Edit App Info')>-1"
+                    <button class="hvr" *ngIf="auth.currentUser.permissions.includes('Edit App Info')"
                         (click)="saveOldInfo(appinfo)" type="button">Edit App Info</button>
-                    <button class="hvr" *ngIf="auth.currentUser.permissions.indexOf('Edit App Data')>-1"
+                    <button class="hvr" *ngIf="auth.currentUser.permissions.includes('Edit App Data')"
                         (click)="saveOldData(appinfo)" type="button">Edit App Data</button>
-                    <button class="hvr" *ngIf="auth.currentUser.permissions.indexOf('Delete App')>-1"
+                    <button class="hvr" *ngIf="auth.currentUser.permissions.includes('Delete App')"
                         (click)="delete(appinfo)" type="button">Delete</button>
                 </td>
             </tr>

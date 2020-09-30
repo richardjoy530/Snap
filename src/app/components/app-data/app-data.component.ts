@@ -11,7 +11,7 @@ import { Button, DataService, Label, TextBox } from 'src/app/services/data/data.
 })
 export class AppDataComponent implements OnInit {
   unSavedControls: any[];
-  defaultControls: any[]
+  defaultControls: any[]//not implemented
   currentControl: any
   constructor(public data: DataService, public auth: AuthService, public route: Router) {
     this.unSavedControls = [...data.selectedAppInfo.appData.controls]
@@ -35,9 +35,9 @@ export class AppDataComponent implements OnInit {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
     }
   }
 
@@ -102,7 +102,7 @@ export class AppDataComponent implements OnInit {
 
   logout() {
     this.auth.isLoggedIn = false;
-    localStorage.setItem("user", "")
+    localStorage.removeItem("user")
     this.route.navigate(["login"])
   }
 

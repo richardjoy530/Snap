@@ -9,22 +9,18 @@
     </span>
 </nav>
 
-
 <div class="main-container">
 
-
-    <section  
-        class="control">
+    <section class="control">
 
         <p class="heading">Controls</p>
-        <button  class="hvr " (click)="addLabel()">Label</button>
-        <button  class="hvr " (click)="addTextBox()">TextBox</button>
-        <button  class="hvr " (click)="addButton()">Button</button>
+        <button class="hvr " (click)="addLabel()">Label</button>
+        <button class="hvr " (click)="addTextBox()">TextBox</button>
+        <button class="hvr " (click)="addButton()">Button</button>
 
     </section>
 
-
-    <section cdkDropList  [cdkDropListData]="unSavedControls" class="example-list" (cdkDropListDropped)="drop($event)"
+    <section cdkDropList [cdkDropListData]="unSavedControls" class="example-list" (cdkDropListDropped)="drop($event)"
         class="data">
 
         <p class="heading">Data</p>

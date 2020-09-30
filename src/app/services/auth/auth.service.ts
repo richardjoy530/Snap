@@ -20,21 +20,17 @@ export class AuthService {
 
     this.isLoggedIn = false
 
-    if (localStorage.getItem("user") != "" &&localStorage.getItem("user")!=null) {
+    if (localStorage.getItem("user") != "" && localStorage.getItem("user") != null) {
       var temp = JSON.parse(localStorage.getItem("user"))
       if (temp != null) {
         this.isLoggedIn = true
         this.currentUser = temp
-        console.log(this.currentUser)
       }
     }
   }
-  get loggedIn() {
-    return this.isLoggedIn
-  }
 
   authenticate(username: string, password: any) {
-    
+
     this.usersList.forEach(user => {
       if (user.username.toLowerCase() == username && user.password == password) {
         this.currentUser = user

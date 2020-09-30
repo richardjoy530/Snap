@@ -10,9 +10,9 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup; 
+  loginForm: FormGroup;
 
-  constructor(private auth: AuthService, private route: Router,public form:FormBuilder) {
+  constructor(private auth: AuthService, private route: Router, public form: FormBuilder) {
     this.loginForm = this.form.group({
       username: '',
       password: '',
@@ -21,15 +21,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.auth.isLoggedIn == true) {
-      console.log(this.auth.isLoggedIn)
       this.route.navigate(["app-listing"])
     }
   }
 
   authenticate() {
     this.auth.authenticate(this.loginForm.value.username, this.loginForm.value.password)
-    
-    if (this.auth.loggedIn == true) {
+    if (this.auth.isLoggedIn == true) {
       this.route.navigate(["app-listing"])
     } else {
       this.route.navigate(["login"])

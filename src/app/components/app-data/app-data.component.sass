@@ -1,7 +1,7 @@
 $primary-button-color: #241349
 $primary-text-color : #c5c5c5
 $background-shade-100: #273f61
-$background-shade-200: #132642
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto')
 
 .navbar
@@ -82,6 +82,9 @@ $background-shade-200: #132642
             align-items: flex-start
             flex-direction: column
 
+        label
+            cursor: move
+
         button
             margin-top: 10px
             margin-bottom: 10px
@@ -90,7 +93,8 @@ $background-shade-200: #132642
             color: $primary-text-color
             border-radius: 10px
             font-weight: 500
-            cursor: pointer
+            cursor: move
+
         input 
             padding: 10px
             margin-top: 10px
@@ -99,6 +103,7 @@ $background-shade-200: #132642
             border-radius: 10px
             background-color: #0a163c
             color: $primary-text-color
+            cursor: move
 
     .prop
         flex: 1
@@ -111,10 +116,10 @@ $background-shade-200: #132642
         .heading
             display: inline-block
 
-
 .hvr    
     transition-duration: 0.3s
     transition-property: transform
+
 .hvr:hover
     transform: scale(1.2)
 
@@ -130,6 +135,7 @@ $background-shade-200: #132642
     border-radius: 10px
     font-weight: 500
     cursor: pointer
+
 .input 
     padding: 10px
     margin-top: 10px
@@ -139,14 +145,11 @@ $background-shade-200: #132642
     background-color: #0a163c
     color: $primary-text-color
 
-
 .cdk-drag-placeholder 
     opacity: 0
 
-
 .cdk-drag-animating 
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1)
-
 
 .cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) 
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1)

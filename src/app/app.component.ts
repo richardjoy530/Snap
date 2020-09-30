@@ -7,7 +7,7 @@ import { slideInAnimation } from './animations/route-animations';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass'],
   animations: [slideInAnimation,
-   ]
+  ]
 })
 export class AppComponent {
   title = 'Snap';
