@@ -57,6 +57,10 @@ export class AppListingComponent implements OnInit {
     this.data.addAppInfo(new AppInfo(this.newAppForm.value.name, this.newAppForm.value.description, new AppData([])))
     this.showUpdateDiv = false
     this.showNewDiv = false
+    this.newAppForm = this.form.group({
+      name: '',
+      description: '',
+    })
   }
 
   delete(appInfo: AppInfo) {
